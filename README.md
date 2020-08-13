@@ -7,7 +7,7 @@ Analysis of the occurrence's frequency of words in text
  2. Activate virtual environment
  3. Install packages from requirements.txt: pip install -r requirements.txt
  4. Do migrations in DB: python manage.py migrate
- 5. For setting value of "high" and "low" frequency execute (optional): SET LOW_RATE_LIMIT=<VALUE>;  SET HIGH_RATE_LIMIT=<VALUE>
+ 5. For setting value of "high" and "low" frequency execute (optional): SET LOW_RATE_LIMIT=value;  SET HIGH_RATE_LIMIT=value
  6. Start app: python manage.py runserver
  7. Open in browser "localhost:8000
 
