@@ -3,6 +3,7 @@ import re
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+from text_analyzer import settings
 from .forms import TextForm
 from .models import Text, Word
 
@@ -22,9 +23,9 @@ def input_text(request):
             text_obj.save()  # save Text object in DB
             words_obj_list = []
             for word, number in word_count_dict.items():
-                if number > 5:
+                if number > settings.HIGH_RATE_LIMIT:
                     frequency_word = "high"
-                elif number < 3:
+                elif number < settings.LOW_RATE_LIMIT:
                     frequency_word = "low"
                 else:
                     frequency_word = "average"
@@ -43,8 +44,7 @@ def input_text(request):
                 words_obj_list = words_obj_list[199:]
             Word.objects.bulk_create(words_obj_list)
             return HttpResponseRedirect("statistic/{}".format(text_obj.id))
-    else:
-        print("\n GET\n")
+    elif request.method == "GET":
         form = TextForm()
     return render(request, "index.html", {"form": form})
 
@@ -52,7 +52,5 @@ def input_text(request):
 def statistic(request, text_id):
     text = Text.objects.get(pk=text_id)
     words = Word.objects.filter(text=text).order_by("-amount")
-    print("text: ", text)
-    print("20 words: ", words[:20])
     context = {"text": text, "words": words}
     return render(request, "statistic.html", context)
