@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('word', models.CharField(max_length=40)),
                 ('amount', models.PositiveIntegerField()),
-                ('text', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='analyzator.Text')),
+                ('text', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='analyzer.Text')),
             ],
         ),
     ]
