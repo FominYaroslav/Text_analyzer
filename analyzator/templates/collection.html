@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1 align="center">Collection of texts</h1>
+{% if object_list %}
+{% for text in object_list %}
+<h3>{{text}}</h3>
+<a href="/statistic/{{text.id}}"><p>View statistic of this text</p></a>
+{%endfor%}
+{% else %}
+    <div class="alert alert-dismissible alert-warning">
+  <button type="button" class="close" data-dismiss="alert"></button>
+  <h4 class="alert-heading">Collection of text is empty yet</h4>
+  <p class="mb-0"> <a href="/" class="alert-link">Return on main page </a>.</p>
+    </div>
+
+{% endif %}
+
+{% endblock content %}

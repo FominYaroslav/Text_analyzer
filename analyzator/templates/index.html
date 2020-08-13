@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title %} Text analyzator {%endblock title%}</title>
+    <link rel="stylesheet" href="{%static "css/bootstrap.min.css"%}" type="text/css">
+</head>
+<body>
+
+<div class="row" >
+
+<a class="col-md-6" href="/"> <button type="button" class="btn btn-lg btn-outline-primary">Main page</button></a>
+<a class="col-md-6" href="/collection"> <button type="button" class="btn btn-lg btn-outline-primary">Collection</button></a>
+</div>
+{% block content %}
+<div class="container">
+    <div class="row" style="margin:40px">
+        <div class="col-md-6">
+
+        </div>
+    <div class="col-md-8" style="margin:40px">
+        <div class="form-group">
+    <form action="" method="post">
+    {% csrf_token %}
+    <label for="text">Enter text which you wan to to analyze</label>
+    <textarea class="form-control" name="text" rows="10" cols="40" id="id_text" required=""></textarea>
+    <input class="btn btn-primary" type="submit" value="Submit" />
+    </form>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}
+
+</body>
+</html>

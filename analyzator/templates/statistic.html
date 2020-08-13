@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block title %}Statistic {% endblock %}
+
+{%block content %}
+<h1 align=center>Text:</h1>
+
+<p>{{text.text}}</p>
+<h3 align=center>Words</h3>
+
+<div class="container">
+    <div class="row">
+        {% regroup words by frequency as words_list %}
+
+        {% for word in words_list %}
+       <div class="col-md-4">
+           <table class="table table-hover">
+               <thead>
+                    <tr class="{% cycle 'table-success' 'table-info' 'table-secondary' %}">
+                      <th scope="col">Word</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+               </thead>
+            <h4>{{ word.grouper|title }} frequency </h4>
+            {% for item in word.list %}
+               <tbody >
+                    <tr>
+                      <td>{{ item.word }}</td>
+                      <td>{{ item.amount }}</td>
+                    </tr>
+               </tbody>
+        {% endfor %}
+            </table>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{% endblock content %}
